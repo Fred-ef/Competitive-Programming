@@ -1,6 +1,5 @@
-# Find the Next Greater Number in a Circular Array
-
-This program solves the problem of finding the next greater number for each element in a circular array `nums`. The next greater number of an element `x` is the first greater number in its traversing-order next in the array. If it does not exist, the value is -1.
+## Problem
+Find the Next Greater Number in a Circular Array. The next greater number of an element `x` is the first greater number in its traversing-order next in the array. If it does not exist, the value is -1.
 
 ## Solution
 
