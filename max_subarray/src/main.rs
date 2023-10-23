@@ -1,5 +1,8 @@
 use std::vec;
 
+mod lib;
+use lib::max_sub_array;
+
 fn main() {
     let arr1 = vec![-2,1,-3,4,-1,2,1,-5,4];
     let arr2 = vec![1];
@@ -26,23 +29,4 @@ fn main() {
     if res3 == out3 {
         println!("test3 passed");
     }
-}
-
-pub fn max_sub_array(nums: Vec<i32>) -> i32 {
-    let mut max = 0;
-    let mut sum = 0;
-
-    for &num in &nums {
-        if sum > 0 {
-            sum += num;
-        } else {
-            sum = num;
-        }
-
-        if sum > max {
-            max = sum;
-        }
-    }
-
-    max
 }
