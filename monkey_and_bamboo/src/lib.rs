@@ -19,21 +19,15 @@ pub fn compute_strength(
             continue;
         }
 
-        println!("curr dist: {}", dist);    // DEBUG
-        println!("max dist: {}", max_dist); // DEBUG
-        println!("carry: {}", double_max);  // DEBUG
         if max_dist == *dist {
-            println!("Double!");    // DEBUG
             double_max = 1;
         }
         else {
             if *dist > max_dist {
-                println!("Update"); // DEBUG
                 max_dist = *dist;
                 double_max = 0;
             }
         }
-        println!("##########");             // DEBUG
     }
 
     let res = max_dist + double_max;
