@@ -15,13 +15,13 @@ fn main() {
     // test 1
     let res1 = max_sub_array(arr1);
     if res1 == out1 {
-        println!("test1 passed");
+        println!("Test1 passed!");
     }
 
     // test 2
     let res2 = max_sub_array(arr2);
     if res2 == out2 {
-        println!("test2 passed");
+        println!("Test2 passed!");
     }
 
     // test 3
