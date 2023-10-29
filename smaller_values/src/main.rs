@@ -1,6 +1,4 @@
-mod lib;
 mod segtree;
-
 use segtree::SegTree;
 
 fn main() {

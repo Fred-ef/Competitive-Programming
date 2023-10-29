@@ -124,13 +124,13 @@ impl SegTree {
         // towards the root in a binary tree, we need to divide by the logarithm base 2 of the
         // current elements to reach the correct level
         let level_height = num_values.ilog2() as usize;
-        let curr_node = (leaf_size+left-1)/usize::pow(2, level_height as u32);
+        let curr_node_index = (leaf_size+left-1)/usize::pow(2, level_height as u32);
 
         // we also want to push the interval covered by the node (in the original array), for easy retrieval
         // NOTE: the since the array has been is padded on the right, when examining the right-most slice of
         // the array, we only want to take elements up to the original length of the array (leaving the padding out)
-        let right_end = if right > (original_len-1) {original_len-1} else {right};
-        tree[curr_node].interval = (left, right_end);
+        let curr_seq_end = if right > (original_len-1) {original_len-1} else {right};
+        tree[curr_node_index].interval = (left, if curr_seq_end > left {curr_seq_end} else {right});
 
         // ########## DEBUG PRINTS ##########
 
@@ -147,12 +147,12 @@ impl SegTree {
         // ##################################
 
         // retrieving the 2 childs:
-        let left_child = &tree[curr_node*2+1];
-        let right_child = &tree[curr_node*2+2];
+        let left_child = &tree[curr_node_index*2+1];
+        let right_child = &tree[curr_node_index*2+2];
 
         // retrieving the 2 sub arrays:
-        let left_seq = &(tree[curr_node*2+1].seq);
-        let right_seq = &(tree[curr_node*2+2].seq);
+        let left_seq = &(tree[curr_node_index*2+1].seq);
+        let right_seq = &(tree[curr_node_index*2+2].seq);
         // println!("Sequences: [{:#?}],\t[{:#?}]", left_seq, right_seq);
         // getting the sequences lengths
         let left_len = left_child.seq_len;
@@ -166,7 +166,7 @@ impl SegTree {
         let mut curr_seq_len: usize = 0;
 
         // inserting the elements in the node's array and connecting them to the childs arrays
-        for i in left..=right_end {
+        for i in left..=curr_seq_end {
             let mut curr_elem = (arr[i], None, None); // allocating the current element to push into the node's array
 
             // ##### LINKG TO LEFT CHILD ARRAY #####
@@ -231,8 +231,8 @@ impl SegTree {
         }
 
         // we can now set the current node array and update the sequence length in the node
-        tree[curr_node].seq = curr_seq;
-        tree[curr_node].seq_len = curr_seq_len;
+        tree[curr_node_index].seq = curr_seq;
+        tree[curr_node_index].seq_len = curr_seq_len;
         // println!("");
     }
 
@@ -245,16 +245,17 @@ impl SegTree {
 
         // converting the query element "val" to the biggest element which is <= val (this will yield the same result)
         if let Some(index) = Self::tuple_bin_search(&self.tree[0].seq, self.tree[0].seq_len, val) {
-            Self::smaller_values_rec(&self, query_interval, Some(index), 0)
+            self.smaller_values_rec(query_interval, Some(index), 0)
         }
         else {
             0
         }
     }
 
-    fn smaller_values_rec(&self, query_interval: (usize, usize), val_index: Option<usize>, curr_node: usize) -> usize {
-        let curr_interval = self.tree[curr_node].interval;
-        println!("Current node: {}; current interval: {:#?}", curr_node, curr_interval);
+    fn smaller_values_rec(&self, query_interval: (usize, usize), val_index: Option<usize>, curr_node_index: usize) -> usize {
+        let curr_node = &self.tree[curr_node_index];
+        let curr_interval = curr_node.interval;
+        println!("Current node: {}; current interval: {:#?}", curr_node_index, curr_interval);
         let overlap_type = Self::get_overlap(curr_interval, query_interval);
 
         match overlap_type {
@@ -274,17 +275,17 @@ impl SegTree {
                 // we return the sum between the result of the left child and that of the right
                 // child, which we can obtain by following the "index-link" in the triple
                 println!("Partial overlap");
-                let left_res = if self.tree[curr_node].seq[val_index.unwrap()].1 == None {0}
-                                        else {self.smaller_values_rec(query_interval, self.tree[curr_node].seq[val_index.unwrap()].1, curr_node*2+1)};
-                let right_res = if self.tree[curr_node].seq[val_index.unwrap()].2 == None {0}
-                                        else {self.smaller_values_rec(query_interval, self.tree[curr_node].seq[val_index.unwrap()].2, curr_node*2+2)};
+                let left_res = if curr_node.seq[val_index.unwrap()].1 == None {0}
+                                        else {self.smaller_values_rec(query_interval, curr_node.seq[val_index.unwrap()].1, curr_node_index*2+1)};
+                let right_res = if curr_node.seq[val_index.unwrap()].2 == None {0}
+                                        else {self.smaller_values_rec(query_interval, curr_node.seq[val_index.unwrap()].2, curr_node_index*2+2)};
                 return left_res + right_res;
             },
         }
     }
 
     fn get_overlap(first: (usize, usize), second: (usize, usize)) -> Overlap {
-        println!("First: ({}, {}),\t Second: ({}, {})", first.0, first.1, second.0, second.1);
+        // println!("First: ({}, {}),\t Second: ({}, {})", first.0, first.1, second.0, second.1);
         if first.0 >= second.0 && first.1 <= second.1 {
             return Overlap::TOTAL;
         }
