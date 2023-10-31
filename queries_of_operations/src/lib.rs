@@ -11,8 +11,6 @@ pub fn queries_of_operations(nums: &mut Vec<i32>, ops: Vec<(usize, usize, i32)>,
         ops_occ[queries[i].1+1] -= 1;
     }
 
-    println!("Operations occurrences: {:#?}", ops_occ);
-
     // Since we now know how many time each operation will be executed, we can utilize this information
     // to fill an additional array so that the i-th position tells us by how much the i-th element
     // of the "num" array has to be incremented
@@ -27,8 +25,6 @@ pub fn queries_of_operations(nums: &mut Vec<i32>, ops: Vec<(usize, usize, i32)>,
         num_sum[ops[i].0] += ops[i].2 * occ_counter;    // we want to sum "occ_counter" times the 'd' factor from this index on
         num_sum[ops[i].1+1] -= ops[i].2 * occ_counter;  // we don't want to propagate this operation after the interval end
     }
-
-    println!("Sum layout: {:#?}", num_sum);
 
     // We now know how much has to be added to each position (relative to the previous one), so we
     // can scan the "nums" array and add the correct value to each element
