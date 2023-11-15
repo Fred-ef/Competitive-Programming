@@ -1,5 +1,4 @@
-mod lib;
-use lib::number_of_ways;
+use number_of_ways::number_of_ways;
 
 fn main() {
 

@@ -1,7 +1,6 @@
 use std::vec;
 
-mod lib;
-use lib::max_sub_array;
+use max_subarray::max_sub_array;
 
 fn main() {
     let arr1 = vec![-2,1,-3,4,-1,2,1,-5,4];

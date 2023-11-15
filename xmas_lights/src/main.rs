@@ -1,5 +1,4 @@
-mod lib;
-use lib::patriotic_selections;
+use xmas_lights::patriotic_selections;
 
 fn main() {
     let street = "RWGXXX";

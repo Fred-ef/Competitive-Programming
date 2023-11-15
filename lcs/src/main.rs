@@ -1,5 +1,4 @@
-mod lib;
-use lib::lcs;
+use lcs::lcs;
 
 fn main() {
     // Test 1

@@ -1,5 +1,4 @@
-mod lib;
-use lib::compute_power;
+use powerful_array::compute_power;
 
 
 fn main() {

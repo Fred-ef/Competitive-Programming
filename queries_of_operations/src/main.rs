@@ -1,5 +1,4 @@
-mod lib;
-use lib::queries_of_operations;
+use queries_of_operations::queries_of_operations;
 
 fn main() {
 

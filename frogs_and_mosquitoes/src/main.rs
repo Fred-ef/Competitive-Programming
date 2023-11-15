@@ -1,5 +1,4 @@
-mod lib;
-use lib::eat_mosquitoes;
+use frogs_and_mosquitoes::eat_mosquitoes;
 
 fn main() {
 

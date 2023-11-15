@@ -1,5 +1,4 @@
-mod lib;
-use lib::min_jumps;
+use min_num_of_jumps::min_jumps;
 
 fn main() {
 

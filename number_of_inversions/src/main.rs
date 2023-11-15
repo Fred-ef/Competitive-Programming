@@ -1,5 +1,4 @@
-mod lib;
-use lib::merge_sort;
+use number_of_inversions::merge_sort;
 
 fn main() {
 

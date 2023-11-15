@@ -1,5 +1,4 @@
-mod lib;
-use lib::compute_strength;
+use monkey_and_bamboo::compute_strength;
 
 fn main() {
 

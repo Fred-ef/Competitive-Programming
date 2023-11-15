@@ -1,6 +1,6 @@
 use std::collections::VecDeque;
 
-pub fn find_longest_k_good_segment(a: Vec<i32>, k: i32) -> (usize, usize) {
+pub fn find_longest_segment(a: Vec<i32>, k: i32) -> (usize, usize) {
     let max_val = *a.iter().max().unwrap();   // need the maximum to construct occurrences array
     let mut segments: Vec<(usize, usize)> = Vec::new();   // will contain all k-good segments
     let mut result: (usize, usize) = (0, 0);   // will contain (one of) the longest k-good segment

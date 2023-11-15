@@ -1,5 +1,4 @@
-mod lib;
-use lib::next_greater_elements;
+use next_greater_element::next_greater_elements;
 
 fn main() {
     let arr1 = vec![1,2,1];

@@ -1,5 +1,4 @@
-mod lib;
-use lib::subset_sum;
+use subset_sum::subset_sum;
 
 fn main() {
 
@@ -18,7 +17,6 @@ fn main() {
     // Test 2
     let arr2 = vec![3, 34, 4, 12, 5, 2];
     let target_sum2 = 9;
-    let out2 = true;
 
     if subset_sum(&arr2, target_sum2) {
         println!("Test 2: Subset with sum {} exists.", target_sum2);

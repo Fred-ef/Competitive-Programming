@@ -1,5 +1,4 @@
-mod lib;
-use lib::lis;
+use lis::lis;
 
 fn main() {
 
