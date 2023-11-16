@@ -1,5 +1,4 @@
-mod lib;
-use lib::lbs;
+use lbs::lbs;
 
 fn main() {
     // Test 1
