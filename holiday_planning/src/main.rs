@@ -1,15 +1,13 @@
-mod lib;
-use lib::max_attractions;
+use holiday_planning::plan;
 
 fn main() {
-    let cities = 3;
-    let days = 4;
+    // Example usage
     let attractions = vec![
-        vec![3, 2, 1, 4],
-        vec![4, 3, 2, 3],
-        vec![2, 2, 2, 3],
+        vec![3, 1, 1],
+        vec![3, 2, 1],
+        // vec![4, 6, 5, 7],
     ];
 
-    let max = max_attractions(&attractions, cities, days);
-    println!("Maximum attractions: {}", max);
+    let result = plan(attractions);
+    println!("Maximum attractions visited: {}", result);
 }
