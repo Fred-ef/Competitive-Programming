@@ -45,3 +45,13 @@ We can now define a recurrence relation that follows this pattern ('k' is the nu
 
 
 The implementation follows this recurrence relation closely. Operationally, the presented solution scans the string only once, performing a constant number of additions (1 or 3) at each step, resulting in a time complexity of O(n). Additionally, it relies on only four variables to function, giving us a space complexity of O(1).
+
+## Input
+
+Multiple lines:
+- The first line contains n, the number of houses
+- The next line contains a character in { R, W, G, X } for each color of the n houses
+
+## Output
+
+The number of patriotic selections in the 3^k possible street colorings.

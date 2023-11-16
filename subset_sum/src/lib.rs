@@ -1,6 +1,6 @@
 pub fn subset_sum(arr: &[u64], target_sum: u64) -> bool {
     let n = arr.len();
-    
+
     // Create a DP matrix to store subset sum possibilities
     let mut dp = vec![vec![false; (target_sum + 1) as usize]; n + 1];
 

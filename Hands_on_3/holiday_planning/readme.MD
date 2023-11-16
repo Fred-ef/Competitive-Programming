@@ -2,8 +2,7 @@
 
 ## Problem Description
 
-As part of the problem, you are provided with the number of attractions you can visit for each of the D days, in each city. The number of cities is n. The objective is to identify the maximum number of attractions the tourist can visit. Note that you can only visit the attractions in the order provided by the guide (i.e. you cannot "cherry pick" the attractions of a specific day without the days before it).
-The time complexity of the solution is O(n * D^2).
+As part of the problem, you are provided with the number of attractions you can visit for each of the D days, in each city. The number of cities is n. The objective is to identify the maximum number of attractions the tourist can visit. Note that you can only visit the attractions in the order provided by the guide (i.e. you cannot "cherry pick" the attractions of a specific day without the days before it). The expected time complexity of the solution is O(n * D^2).
 
 ## Solution
 
@@ -41,3 +40,13 @@ For each number of days from 0 to d, we evaluate what we would get by staying in
 
 For each of the D*n cells in the matrix we examine from a maximum of D configurations, each generated in constant time thanks to prefix arrays. The resulting time complexity is thus O(nD^2).
 As supporting structures, we use the prefix-sum matrix, which requires O(n*D) space, and the dynamic programming matrix of size n*D, which also requires O(n*D) space, for a total space complexity of O(n*D).
+
+## Input
+
+n+1 lines:
+- The first line contains n and D
+- The following n lines each contain D different integer values and describe the itineraries 'I'.
+
+## Output
+
+The maximum number of attractions that you can visit.

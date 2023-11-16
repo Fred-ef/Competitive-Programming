@@ -1,7 +1,6 @@
 use monkey_and_bamboo::compute_strength;
 
 fn main() {
-
     // test 1
     let rungs1 = vec![1, 6, 7, 11, 13];
     let out1 = 5;

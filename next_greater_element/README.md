@@ -1,4 +1,7 @@
-## Problem
+# Next greater element
+
+## Problem description
+
 Find the Next Greater Number in a Circular Array. The next greater number of an element `x` is the first greater number in its traversing-order next in the array. If it does not exist, the value is -1.
 
 ## Solution
@@ -17,13 +20,15 @@ The resolution process works as follows:
 
 5. In the end, the `res` vector will contain the next greater numbers for each element in `nums`.
 
-## Usage Example
+## Time and Space complexity
 
-```rust
-use project_name::next_greater_elements;
+We scan the num array twice performing constant-time operations at each step, resulting in a time complexity of O(n).
+We use 2 auxiliary structures: one to store the result, with exactly n elements, and the stack, which at any point contains at most n elements, for a total of O(n) space.
 
-fn main() {
-    let nums = vec![1, 2, 1];
-    let result = next_greater_elements(nums);
-    println!("{:?}", result); // Output: [2, -1, 2]
-}
+## Input
+
+The array on which to perform the computation (already provided in the main method).
+
+## Output
+
+The result array, along with some test results.

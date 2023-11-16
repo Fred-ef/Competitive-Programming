@@ -1,11 +1,9 @@
 use powerful_array::compute_power;
 
-
 fn main() {
-
     // Test 1
     let arr1 = vec![1, 2, 1];
-    let queries1 = vec![(0,1), (0,2)];
+    let queries1 = vec![(0, 1), (0, 2)];
     let res1 = compute_power(&arr1, &queries1);
     let out1 = vec![3, 6];
 
@@ -16,7 +14,7 @@ fn main() {
 
     // Test 2
     let arr2 = vec![1, 1, 2, 2, 1, 3, 1, 1];
-    let queries2 = vec![(2,7), (1,6), (2, 7)];
+    let queries2 = vec![(2, 7), (1, 6), (2, 7)];
     let res2 = compute_power(&arr2, &queries2);
     let out2 = vec![20, 20, 20];
 

@@ -10,3 +10,16 @@ Explanation: In this example, there are five inversions: (20, 6), (20, 4), (20, 
 ## Solution
 The solution to this problem is to use the Merge Sort algorithm, which inherently counts the number of inversions during the sorting process. Merge Sort is a divide-and-conquer sorting algorithm that divides the input array into two halves, recursively sorts them, and then merges the sorted halves while counting the inversions.
 In the merge step, when an element from the right subarray is smaller than an element from the left subarray, it indicates an inversion. The count of inversions also has to be incremented by the number of elements remaining in the left subarray.
+
+## Time and Space complexity
+
+The heavy-weight of the solution is done by the merge-sort algorithm, thus the complexity is that of merge-sort, which is O(nlgn).
+We use the same additional space as merge sort: O(n).
+
+## Input
+
+The array on which to count the number of inversions (already provided in the main method).
+
+## Output
+
+The number of inversions, along with some test results.

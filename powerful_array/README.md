@@ -24,19 +24,15 @@ The efficiency lies in updating the current power when moving the left and right
 
 Once the power is calculated for each query, we store the results in a results vector, `ans`.
 
-Since we perform a maximum of sqrt(n) steps when passing from one query to the next, and we have sqrt(n) blocks of sqrt(n) elements each, the overall complexity of the procedure is O(srqt(n) * n).
+## Time and Space complexity
 
-## Example of usage
+Since we perform a maximum of sqrt(n) steps when passing from one query to the next, and we have sqrt(n) blocks of sqrt(n) elements each, the overall time complexity of the procedure is O(srqt(n) * n).
+We use a support vector in which we store the subarray-queries in an ordered-fashion, which takes O(t) space. We also utilize a support vector of size k, where k is the maximum value we have in the input array; since the input-values are bound (<= 10^6), this technically takes O(1) space, as it is constant, though it can be much larger than the actual size of the array.
 
-```rust
+## Input
 
-fn main() {
-    let arr = vec![2, 6, 10, 4, 7, 28, 9, 11, 6, 33];
-    let queries = vec![(1, 5), (2, 8)];
+The array and all queries (already provided in the main method).
 
-    let results = calculate_powerful_array(&arr, &queries);
+## Output
 
-    for result in results {
-        println!("{}", result);
-    }
-}
+The results for each of the queries, along with some test results.

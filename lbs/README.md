@@ -24,18 +24,14 @@ To find the maximum length of the Longest Bitonic Subsequence, we will use dynam
 
 5. The `max_length` will represent the length of the Longest Bitonic Subsequence.
 
-## Complexity Analysis
+## Time and Space complexity
 Since we only scan the LIS and LDS arrays from left to right at the same time (computing a sum at each step) in the lbs procedure, the time complexity is dominated by the lis() and lbs() procedures, which compute the LIS and LSD respectively, both in O(n*lg(n)) time; therefore, the overall time complexity is O(n*lg(n)).
+We only use two support arrays to store the LIS and the LDS, but each procedure actually requires O(n^2) space to run; this gives us an overall space complexity of O(n^2).
 
-## Usage example
+## Input
 
-Here's a Rust code implementation for finding the Longest Bitonic Subsequence:
+The vector on which to compute the LBS (already provided in the main method).
 
-```rust
-fn main() {
-    let arr = vec![1, 2, 5, 3, 2];
-    let out = 5;
-    let res = lbs(&arr);
+## Output
 
-    println!("Longest Bitonic Subsequence Length: {}", res);
-}
+The length of the longest bitonic sequence, along with a few test results.

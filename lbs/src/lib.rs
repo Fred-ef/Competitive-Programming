@@ -37,13 +37,14 @@ fn lis(arr: &Vec<i32>) -> Vec<usize> {
             res.push(num);
             curr_lis_len += 1;
             lis[i] = curr_lis_len;
-        } else {    // Else, binary search for the index of the smallest element >= num and substitute it with the current element
+        } else {
+            // Else, binary search for the index of the smallest element >= num and substitute it with the current element
             let left = bin_search(&res, num);
             res[left] = num;
             lis[i] = left + 1;
         }
     }
-    
+
     lis
 }
 
@@ -60,7 +61,8 @@ fn lds(arr: &[i32]) -> Vec<usize> {
             res.push(num);
             curr_lis_len += 1;
             lis[i] = curr_lis_len;
-        } else {    // Else, binary search for the index of the smallest element >= num and substitute it with the current element
+        } else {
+            // Else, binary search for the index of the smallest element >= num and substitute it with the current element
             let left = bin_search(&res, num);
             res[left] = num;
             lis[i] = left + 1;

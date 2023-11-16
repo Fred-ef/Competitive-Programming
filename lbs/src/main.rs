@@ -2,7 +2,6 @@ mod lib;
 use lib::lbs;
 
 fn main() {
-
     // Test 1
     let arr1 = vec![1, 2, 5, 3, 2];
     let out1 = 5;

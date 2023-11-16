@@ -16,16 +16,15 @@ Let `s1` and `s2` be the two input strings of lengths `len1` and `len2`, respect
   - If `s1[i] != s2[j]`, we take the maximum of `dp[i][j+1]` and `dp[i+1][j]`, indicating that we don't include the current character in the LCS.
 - The final answer is stored in `dp[len1][len2]`, representing the length of the longest common subsequence.
 
-The procedure cost is dominated by the construction of the dynamic programming matrix, which has len1 rows and len2 columns, giving us a complexity of O(len1*len2).
+## Time and Space complexity
 
-## Example of usage
+The procedure cost in time is dominated by the construction of the dynamic programming matrix, which has len1 rows and len2 columns, giving us a complexity of O(len1*len2).
+The same matrix, which is the only auxiliary structure that we use, gives us a space complexity of O(len1*len2).
 
-```rust
+## Input
 
-fn main() {
-    let s1 = "ABCBDAB";
-    let s2 = "BDCAB";
+The two vectors on which to compute the LCS (already provided in the main method):
 
-    let result = longest_common_subsequence(s1, s2);
-    println!("Length of Longest Common Subsequence: {}", result);
-}
+## Output
+
+The length of the longest common subsequence, along with a few test results.

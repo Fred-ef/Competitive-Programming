@@ -1,7 +1,6 @@
 use number_of_ways::number_of_ways;
 
 fn main() {
-
     // Test 1
     let arr1 = vec![1, 2, 3, 0, 3];
     let out1 = 2;

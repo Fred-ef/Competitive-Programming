@@ -19,8 +19,7 @@ pub fn patriotic_selections(s: &str) -> u64 {
                 count_rwg = count_rwg * 3 + count_rw;
                 count_rw = count_rw * 3 + count_r;
                 count_r = count_r * 3 + 3_u64.pow(count_x);
-                
-                
+
                 count_x += 1;
             }
             _ => (),

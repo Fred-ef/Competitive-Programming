@@ -1,7 +1,6 @@
 use subset_sum::subset_sum;
 
 fn main() {
-
     // Test 1
     let arr1 = vec![3, 2, 5, 1];
     let target_sum1 = 6;

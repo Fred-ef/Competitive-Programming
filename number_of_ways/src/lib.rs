@@ -11,10 +11,9 @@ pub fn number_of_ways(a: Vec<i64>) -> i64 {
         return 0;
     }
 
-
     let third_total = total / 3;
     let mut curr_sum = 0;
-    let mut first_third = 0;    // number of ways to make 1/3 of the total
+    let mut first_third = 0; // number of ways to make 1/3 of the total
     let mut result = 0;
 
     for i in 0..(a.len() - 1) {

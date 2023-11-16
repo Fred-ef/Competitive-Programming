@@ -16,15 +16,15 @@ To solve this problem, we can use the following approach:
 
 4. Return the final value of `result`, which represents the number of ways to split the array into three parts with equal sums.
 
-## Example
+## Time and Space complexity
 
-Here's an example of how to use the `number_of_ways` function in Rust:
+We scan the input array once, performing constant-time operations at each step, for a time complexity of O(n).
+We only use a few variables in the algorithm, which makes the space complexity O(1).
 
-```rust
-let arr = vec![1, 2, 3, 0, 3];
-let out = 2;
-let res = number_of_ways(arr);
-println!("Number of ways: {}", res);
-if res == out {
-    println!("Test passed!");
-}
+## Input
+
+The array we want to split (already provided in the main method).
+
+## Output
+
+The number of ways in which we can split the array, along with some test results.

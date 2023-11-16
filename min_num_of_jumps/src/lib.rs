@@ -19,13 +19,11 @@ pub fn min_jumps(arr: &Vec<i32>) -> i32 {
     }
 
     // Initializing support variables
-    let mut reachable = arr[0] as usize;    // Initialize with position reachable from first cell
-    let mut rem_steps = arr[0] as usize;    // Initialize with the remaining number of steps from the first cell
-    let mut num_jumps = 1;  // We already "started" the first jump, and have to see where we can land
-
+    let mut reachable = arr[0] as usize; // Initialize with position reachable from first cell
+    let mut rem_steps = arr[0] as usize; // Initialize with the remaining number of steps from the first cell
+    let mut num_jumps = 1; // We already "started" the first jump, and have to see where we can land
 
     for i in 1..n {
-
         // If we're at the goal, return jumps done until now
         if i == n - 1 {
             return num_jumps;
@@ -36,20 +34,18 @@ pub fn min_jumps(arr: &Vec<i32>) -> i32 {
             return num_jumps + 1;
         }
 
-
         // We may already be able to go farther (thanks to a previous jump) than if we jumped from the current position
-        reachable = max(reachable, i + arr[i] as usize);    // So we take the best value
-        rem_steps -= 1;     // We have done 1 iteration, corresponding to one step
+        reachable = max(reachable, i + arr[i] as usize); // So we take the best value
+        rem_steps -= 1; // We have done 1 iteration, corresponding to one step
 
         if rem_steps == 0 {
-
             // If we cannot do any more step and are in the reachable position, it means we had to land on a 0; return error
             if i >= reachable {
                 return -1;
             }
 
             num_jumps += 1; // If we cannot do any more step but haven't gotten to our reachable distance, it means that we have to jump again...
-            rem_steps = reachable - i;  // ... updating the number of steps we can make to those needed to reach current goal distance
+            rem_steps = reachable - i; // ... updating the number of steps we can make to those needed to reach current goal distance
         }
     }
 

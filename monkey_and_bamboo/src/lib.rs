@@ -1,13 +1,9 @@
-
-
-pub fn compute_strength(
-    rungs: Vec<i32>
-) -> i32 {
+pub fn compute_strength(rungs: Vec<i32>) -> i32 {
     let mut last_height = 0;
     let mut distances = Vec::new();
 
     for curr_height in rungs {
-        distances.push(curr_height-last_height);
+        distances.push(curr_height - last_height);
         last_height = curr_height;
     }
 
@@ -21,8 +17,7 @@ pub fn compute_strength(
 
         if max_dist == *dist {
             double_max = 1;
-        }
-        else {
+        } else {
             if *dist > max_dist {
                 max_dist = *dist;
                 double_max = 0;

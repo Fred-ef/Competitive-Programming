@@ -8,7 +8,7 @@ The proposed solution is implemented in Rust. The `max_sub_array` function takes
 
 The code uses an approach based on Kadane's algorithm to find the subsequence with the maximum sum. Here's how it works:
 
-1. We initialize two variables, `max` and `sum`, both set to `nums[0`, which represents the first element of the vector.
+1. We initialize two variables, `max` and `sum`, both set to `nums[0]`, which represents the first element of the vector.
 
 2. We iterate through the vector starting from the second element onwards.
 
@@ -18,13 +18,14 @@ The code uses an approach based on Kadane's algorithm to find the subsequence wi
 
 5. At the end of the loop, `max` will contain the maximum sum of the subsequence.
 
-## Usage Example
+## Time and Space complexity
+The algorithm scans the input vector linearly making constant-time operations; therefore, the time complexity is O(n).
+Only 2 supporting variables are utilized, making the space complexity O(1).
 
-```rust
-use project_name::max_sub_array;
+## Input
 
-fn main() {
-    let test_array = vec![2, -3, 4, -1, -2, 1, 5, -3];
-    let result = max_sub_array(test_array);
-    println!("Maximum sum of the subsequence: {}", result);
-}
+The vector on which to compute the maximum subarray (already provided in the main method).
+
+## Output
+
+The interval representing the maximum subarray, along with some test results.

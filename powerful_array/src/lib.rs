@@ -14,7 +14,11 @@ pub fn compute_power(arr: &Vec<i32>, queries: &Vec<(usize, usize)>) -> Vec<i32> 
     let mut res = vec![0; queries.len()];
 
     // Sorting queries of different by block and queries in the same block by end-index
-    let mut queries = queries.iter().enumerate().map(|(i, q)| (i, q)).collect::<Vec<_>>();
+    let mut queries = queries
+        .iter()
+        .enumerate()
+        .map(|(i, q)| (i, q))
+        .collect::<Vec<_>>();
     queries.sort_by(|(_, q1), (_, q2)| {
         let block1 = q1.0 / block_size;
         let block2 = q2.0 / block_size;
@@ -24,8 +28,6 @@ pub fn compute_power(arr: &Vec<i32>, queries: &Vec<(usize, usize)>) -> Vec<i32> 
             q1.1.cmp(&q2.1)
         }
     });
-
-    println!("Ordered queries: {:#?}", queries);
 
     // Main procedure
     let mut prev_left = 0;
@@ -42,68 +44,62 @@ pub fn compute_power(arr: &Vec<i32>, queries: &Vec<(usize, usize)>) -> Vec<i32> 
     for (i, query) in queries {
         let curr_left = query.0;
         let curr_right = query.1;
-        println!("Prev query: ({}, {})", prev_left, prev_right);
-        println!("Curr query: ({}, {})", curr_left, curr_right);
 
         // last query started after curr query start; we need to add the elements in between
         while prev_left > curr_left {
-            println!("Last query started after curr query start");
             prev_left -= 1;
             // Adding the element to the left of the current subarray
             let added_element = arr[prev_left];
             // Removing the old power from the sum (we will put back the updated version)
-            curr_power -= occ[added_element as usize]*occ[added_element as usize]*added_element;
-            occ[added_element as usize] += 1;   // adding the new occurrence
-            // Adding the updated power to the sum
-            curr_power += occ[added_element as usize]*occ[added_element as usize]*added_element;
+            curr_power -= occ[added_element as usize] * occ[added_element as usize] * added_element;
+            occ[added_element as usize] += 1; // adding the new occurrence
+                                              // Adding the updated power to the sum
+            curr_power += occ[added_element as usize] * occ[added_element as usize] * added_element;
         }
 
         // last query started before curr query start; we need to remove the elements in between
         while prev_left < curr_left {
-            println!("last query started before curr query start");
             // Removing the element from the left of the current subarray
             let removed_element = arr[prev_left];
             // Removing the old power from the sum (we will put back the updated version)
-            curr_power -= occ[removed_element as usize]*occ[removed_element as usize]*removed_element;
+            curr_power -=
+                occ[removed_element as usize] * occ[removed_element as usize] * removed_element;
             occ[removed_element as usize] -= 1;
             // Adding the updated power to the sum
-            curr_power += occ[removed_element as usize]*occ[removed_element as usize]*removed_element;
+            curr_power +=
+                occ[removed_element as usize] * occ[removed_element as usize] * removed_element;
 
             prev_left += 1;
         }
 
         // last query ended before curr query end; we need to add the elements in between
         while prev_right < curr_right {
-            println!("last query ended before curr query end");
             prev_right += 1;
             // Adding the element to the right of the current subarray
             let added_element = arr[prev_right];
             // Removing the old power from the sum (we will put back the updated version)
-            println!("Removing {}", occ[added_element as usize]*occ[added_element as usize]*added_element);
-            curr_power -= occ[added_element as usize]*occ[added_element as usize]*added_element;
+            curr_power -= occ[added_element as usize] * occ[added_element as usize] * added_element;
             occ[added_element as usize] += 1;
             // Adding the updated power to the sum
-            println!("Adding {}", occ[added_element as usize]*occ[added_element as usize]*added_element);
-            curr_power += occ[added_element as usize]*occ[added_element as usize]*added_element;
+            curr_power += occ[added_element as usize] * occ[added_element as usize] * added_element;
         }
 
         // last query ended after curr query end; we need to remove the elements in between
         while prev_right > curr_right {
-            println!("last query ended after curr query end");
             // Remove the element from the right of the current subarray
             let removed_element = arr[prev_right];
             // Removing the old power from the sum (we will put back the updated version)
-            curr_power -= occ[removed_element as usize]*occ[removed_element as usize]*removed_element;
+            curr_power -=
+                occ[removed_element as usize] * occ[removed_element as usize] * removed_element;
             occ[removed_element as usize] -= 1;
             // Adding the updated power to the sum
-            curr_power += occ[removed_element as usize]*occ[removed_element as usize]*removed_element;
-            
+            curr_power +=
+                occ[removed_element as usize] * occ[removed_element as usize] * removed_element;
+
             prev_right -= 1;
         }
 
         res[i] = curr_power;
-        println!("Curr power: {}", curr_power);
-        println!();
     }
 
     res

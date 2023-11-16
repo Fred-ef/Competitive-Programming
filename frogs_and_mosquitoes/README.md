@@ -1,4 +1,6 @@
-## Problem
+# Frogs and mosquitoes
+
+## Problem description
 
 You are given a group of frogs and a swarm of mosquitoes. Frogs can catch mosquitoes with their long, sticky tongues. The goal is to calculate how many insects each frog consumes while attempting to catch mosquitoes.
 
@@ -22,29 +24,18 @@ Let's start with a solution overview:
 
 In addition to tracking the frogs and mosquitoes, keep a vector called "result" whose items are couples <monsquitoes eaten, tongue length>. Its size is equal to the initial number of frogs. When a frog <x_i, t_i> eats a mosquito <p_j, b_j>, increment its "mosquitoes count" by 1 and its "tongue length" by b_j in the result vector.
 
-## Execution
-
-To run the code, follow the instructions in the provided `main.rs` file. You can modify the test cases in the `main` function to suit your specific input and check the results.
+## Time and Space complexity
+The initial segments insertion and pre-processing costs O(nlgn).
+The main procedure costs O(mlgn) for checking which frog can eat a given mosquito and update it (for each of the m mosquitoes), plus O(mlgm) to keep track of mosquitoes that have not yet been eaten. This gives us an overall time complexity of O((n+m)lg(n+m)).
+As we only use the two trees, one cotaining at most all the segments and the other containing at most all the mosquitoes, and one vector containing all the frogs, the overall space complexity is O(n+m).
 
 ## Input
 
-The program expects two vectors of tuples as input:
+Two vectors of tuples (already provided in the main method):
 
 - The `frogs` vector represents the frogs with their positions and tongue lengths.
 - The `mosquitoes` vector represents the mosquitoes with their positions and sizes.
 
 ## Output
 
-The program will return a vector of tuples containing the number of mosquitoes eaten by each frog and the total tongue length after eating the mosquitoes.
-
-## Examples
-
-Here are some sample executions with their respective results:
-
-### Example 1
-
-```rust
-let frogs = vec![(10, 2), (15, 0), (6, 1), (0, 1)];
-let mosqs = vec![(110, 10), (1, 1), (6, 0), (15, 10), (14, 100), (12, 2)];
-let out = vec![(3, 114), (1, 10), (1, 1), (1, 2)];
-let res = eat_mosquitoes(frogs, mosqs);
+Each frog paired with its final tongue length, along with a few test results.

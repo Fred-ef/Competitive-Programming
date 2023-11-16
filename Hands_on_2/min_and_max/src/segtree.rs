@@ -5,12 +5,6 @@ struct Node {
     interval: (usize, usize),
 }
 
-// impl Node {
-//     pub fn new(isLeaf: bool, value: i32, map: HashMap<i32, usize>) -> Self {
-//         Self {isLeaf: isLeaf, value: value, map: map}
-//     }
-// }
-
 // enum for overlap kinds
 enum Overlap {
     TOTAL,
@@ -218,8 +212,8 @@ impl SegTree {
                 return i32::MIN;
             }
             Overlap::TOTAL => {
-                // we return the min between the node's value and lazily-propagated update
-                // if the node has no update but one of his ancestors does, we have to consider that update
+                // we return the node value, which has already been updated with the min between its value
+                // and the updated value
                 return self.tree[curr_node_index].value;
             }
             Overlap::PARTIAL => {
@@ -253,7 +247,12 @@ impl SegTree {
         self.update_rec(query_interval, val, 0);
     }
 
-    fn update_rec(&mut self, query_interval: (usize, usize), val: i32, curr_node_index: usize) -> i32 {
+    fn update_rec(
+        &mut self,
+        query_interval: (usize, usize),
+        val: i32,
+        curr_node_index: usize,
+    ) -> i32 {
         let curr_interval = self.tree[curr_node_index].interval;
         let overlap_type = Self::get_overlap(curr_interval, query_interval);
 
@@ -270,8 +269,7 @@ impl SegTree {
                 // returning the minimum between the value and the updated value to update the max in the ancestors
                 if self.tree[curr_node_index].value < val {
                     self.tree[curr_node_index].value
-                }
-                else {
+                } else {
                     val
                 }
             }
@@ -280,7 +278,11 @@ impl SegTree {
                 // println!("Partial overlap");
                 let res_left = self.update_rec(query_interval, val, 2 * curr_node_index + 1);
                 let res_right = self.update_rec(query_interval, val, 2 * curr_node_index + 2);
-                let new_max = if res_left > res_right {res_left} else {res_right};
+                let new_max = if res_left > res_right {
+                    res_left
+                } else {
+                    res_right
+                };
                 self.tree[curr_node_index].value = new_max;
                 new_max
             }
