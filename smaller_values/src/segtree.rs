@@ -277,7 +277,11 @@ impl SegTree {
         // println!("");
     }
 
-    pub fn smaller_values(&self, left: usize, right: usize, val: i32) -> usize {
+    pub fn smaller_values(&self, query: (usize, usize, i32)) -> usize {
+        // dividing the parameters
+        let left = query.0;
+        let right = query.1;
+        let val = query.2;
         // if the interval exceeds the length of the array, normalize it
         let query_interval = (
             left,
