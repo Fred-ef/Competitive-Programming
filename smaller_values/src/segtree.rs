@@ -240,7 +240,7 @@ impl SegTree {
                 }
             }
 
-            // ##### LINKG TO RIGHT CHILD ARRAY #####
+            // ##### LINKING TO RIGHT CHILD ARRAY #####
             // skipping the values in the child array that are smaller than the current element
             while k < right_len && right_seq[k].0 < arr[i] {
                 k += 1;

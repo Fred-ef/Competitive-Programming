@@ -13,7 +13,7 @@ of queries.
 
 ## Solution
 
-We use a segment tree to easily compute max queries on an interval in O(lgn) time (we just need to pre-compute the maximum value for each interval).
+We use a segment tree (specifically a "merge-tree") to easily compute max queries on an interval in O(lgn) time (we just need to pre-compute the maximum value for each interval).
 To support the update operation without weighing on the time complexity, we use "lazy propagation": when we want to update values in a range, instead of updating all those values one by one, we register the update only in segments that are completely contained in that range; then, when we perform our queries, we push that update down (as low as the query goes), effectively registering it when we touch individual elements in a query. The update itself is very simple: we just register the smaller value between the node's value and the value of the update.
 For that reason, the code that actually registers the update on the nodes is part of the "max" query code, and, being part of the query itself, that update is performed in constant time.
 
