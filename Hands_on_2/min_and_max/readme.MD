@@ -31,6 +31,8 @@ Multiple lines:
 - - For a query Update the values of i, j, and T follow
 - - For a query Max the values of i and j follows
 
+NOTE: in the sample test-cases, the queries are 1-indexed; the main converts them to 0-indexed queries.
+
 ## Output
 
 The results of max queries.

@@ -33,6 +33,8 @@ Multiple lines:
 - Next k lines contain the queries
 - - a query number consists of two integers: a and b
 
+NOTE: in the sample test-cases, the queries are 1-indexed; the main converts them to 0-indexed queries.
+
 ## Output
 
 The n integers of the final array A.

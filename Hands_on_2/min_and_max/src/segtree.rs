@@ -169,7 +169,10 @@ impl SegTree {
         tree[curr_node_index].value = arr[curr_seq_end];
     }
 
-    pub fn max(&mut self, left: usize, right: usize) -> i32 {
+    pub fn max(&mut self, query: (usize, usize)) -> i32 {
+        // dividing input variables
+        let left = query.0;
+        let right = query.1;
         // if the interval exceeds the length of the array, normalize it
         let query_interval = (
             left,
@@ -230,7 +233,11 @@ impl SegTree {
         }
     }
 
-    pub fn update(&mut self, left: usize, right: usize, val: i32) {
+    pub fn update(&mut self, query: (usize, usize, i32)) {
+        // divinding input variables
+        let left = query.0;
+        let right = query.1;
+        let val = query.2;
         // if the interval exceeds the length of the array, normalize it
         let query_interval = (
             left,
