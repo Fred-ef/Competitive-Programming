@@ -1,10 +1,10 @@
-pub fn patriotic_selections(s: &str) -> u64 {
+pub fn patriotic_selections(seq: Vec<char>) -> u64 {
     let mut count_r = 0;
     let mut count_rw = 0;
     let mut count_rwg = 0;
     let mut count_x = 0;
 
-    for ch in s.chars() {
+    for ch in seq {
         match ch {
             'R' => {
                 count_r = count_r + 3_u64.pow(count_x);
